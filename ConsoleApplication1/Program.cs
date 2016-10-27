@@ -1,17 +1,16 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Task4
+namespace ConsoleApplication1
 {
-    public static class DoubleExtension
+    class Program
     {
-        /// <summary>
-        /// Makes bit array drom double
-        /// </summary>
-        /// <param name="number">Double value</param>
-        /// <returns>Bit array</returns>
-        public static bool[] GetBitArray(this double number)
+        static void Main(string[] args)
         {
+            double number = 155.625;
             bool[] bits = new bool[32];
             bool[] mantiss1 = new bool[(int)Math.Log(number, 2) + 1];
             bool[] mantiss2 = new bool[23 - mantiss1.Length];
@@ -42,7 +41,7 @@ namespace Task4
                 k++;
                 i--;
             }
-            int exponenta = (int)Math.Log(number, 2) + 127;
+            int exponenta = (int)Math.Log(number,2) + 127;
             int j = 8;
             while (exponenta > 0)
             {
@@ -57,10 +56,14 @@ namespace Task4
             }
             for (int g = 0; g < mantiss2.Length; g++)
             {
-                bits[g + 8 + mantiss1.Length] = mantiss2[g];
+                bits[g + 9 + mantiss1.Length] = mantiss2[g];
             }
 
-            return bits;
+            for (int g = 0; g < bits.Length; g++)
+            {
+                Console.Write(bits[g] + " ");
+            }
+            Console.ReadLine();
         }
     }
 }
