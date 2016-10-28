@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,12 +18,14 @@ namespace Task3
         /// <returns></returns>
         public static double NutonSqrt(double number, int exp, double eps)
         {
-            double x, xn = 5;
+            if (exp <= 0 || eps <= 0 || eps >= 1)
+                throw new System.ArgumentException();
+            double x, xn = number;
             do
             {
                 x = xn;
-                xn = ((exp - 1)*x + number/Math.Pow(x, number - 1))/exp;
-            } while (Math.Abs(Math.Pow(xn, exp) - number) > eps);
+                xn = ((exp - 1)*x + number/Math.Pow(x, exp - 1))/exp;
+            } while ((Math.Pow(xn, exp) - number) > eps);
             return xn;
         }
     }
