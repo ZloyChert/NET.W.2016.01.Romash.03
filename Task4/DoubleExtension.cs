@@ -55,6 +55,7 @@ namespace Task4
             {
                 bits[g + 8] = mantiss1[g];
             }
+
             for (int g = 0; g < mantiss2.Length; g++)
             {
                 bits[g + 8 + mantiss1.Length] = mantiss2[g];
